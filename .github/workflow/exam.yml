@@ -3,7 +3,7 @@ name: exam-test-app-db
 on:
   push:
     branches:
-      main:
+      - main
 
 jobs:
   app-db:
