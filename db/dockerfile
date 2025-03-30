@@ -1,0 +1,6 @@
+FROM mysql:latest
+
+# เมื่อสร้าง container ไฟล์ที่อยู่ใน /mysql-entrypoint-initdb.d/ จะถูกรันเสมอ
+COPY init.sql ./docker-entrypoint-initdb.d/
+
+EXPOSE 3310

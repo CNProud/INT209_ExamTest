@@ -1,0 +1,33 @@
+services:
+  app:
+    build: ./app
+    container_name: app_server
+    networks:
+     - exam_network
+    volumes:
+     - ./app:/app
+    ports:
+     - "5001:5000"
+    depends_on:
+     db:
+      condition: service_healthy
+
+
+  db:
+    build: ./db
+    container_name: db_server2
+    ports:
+     - "3310:3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD=rootpassword
+    networks:
+     - exam_network
+    healthcheck:
+     test: ["CMD", "mysqladmin", "ping", "-uroot", "-prootpassword"]
+     interval: 10s
+     timeout: 5s
+     retries: 3
+
+networks:
+  exam_network:
+    driver: bridge

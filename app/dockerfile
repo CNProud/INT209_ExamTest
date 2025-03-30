@@ -1,0 +1,17 @@
+# base image ที่จะใช้ใน app.py
+FROM python:3.9
+
+WORKDIR /app
+
+# copy ทุกไฟล์ใน host(. ข้างหน้า) เข้ามาใน container ใน /app (. ข้างหลัง)
+COPY . .
+
+# เอาไว้ download dependency หรือเครื่องมือต่างๆ เอาไว้ใช้ตอน build image
+RUN pip install -r requirement.txt
+
+# รัน python ที่ app.py (ไว้รันคำสั่ง)
+CMD ["python","app.py"]
+
+# บอกว่าจะใช้ port อะไร
+EXPOSE 5001
+
