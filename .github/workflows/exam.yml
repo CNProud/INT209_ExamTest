@@ -20,7 +20,7 @@ jobs:
         sleep 20
 
      - name: test api
-       run: docker compose exec app_server curl http://localhost:5001/api/users
+       run: docker compose exec app curl http://localhost:5001/api/users
 
      - name: shutdown docker compose
        if: always()
